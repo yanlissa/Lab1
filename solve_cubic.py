@@ -100,7 +100,7 @@ def main():
         
     # Print roots
     if len(roots):
-        formatted_roots = [f"{int(root)}" if abs(root - round(root)) < 1e-6 else f"{root:.3f}" for root in roots]
+        formatted_roots = [f"{int(round(root))}" if abs(root - round(root)) < 1e-6 else f"{root:.3f}" for root in roots]
         print(" ".join(formatted_roots))
     else:
         print("x ∈ ∅")
