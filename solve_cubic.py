@@ -58,7 +58,6 @@ def solve_cubic(a, b, c, d):
             x = t - b/(3*a)
             roots.append(x)
 
-    roots.sort()
     return roots
 
 def print_help():
@@ -92,6 +91,7 @@ def main():
     
     # Solve equation
     roots = solve_cubic(a, b, c, d)
+    roots.sort()
     
     # Handle infinite solutions
     if roots == [float('inf')]:
