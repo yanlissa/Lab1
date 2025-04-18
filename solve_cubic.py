@@ -57,16 +57,31 @@ def solve_cubic(a, b, c, d):
             t = 2 * math.sqrt(-p/3) * math.cos(phi/3 + 2*math.pi*k/3)
             x = t - b/(3*a)
             roots.append(x)
-    
-    # Filter duplicates and sort
-    # unique_roots = []
-    # for x in sorted(roots):
-    #     if not unique_roots or abs(x - unique_roots[-1]) > 1e-6:
-    #         unique_roots.append(x)
+
     roots.sort()
     return roots
 
+def print_help():
+    """Print help message to stdout."""
+    print("Программа решает кубическое уравнение ax^3 + bx^2 + cx + d = 0.")
+    print("Использование: solve_cubic a b c d")
+    print("  a, b, c, d - вещественные коэффициенты (например, 1 -2 1 0).")
+    print("  help       - вывод этой справки.")
+    print("Вывод: действительные корни в одной строке, разделенные пробелами. Целые числа без десятичной части, нецелые — с точностью до 3 знаков. Если корней нет, выводится 'x ∈ ∅'.")
+    print("Пример: solve_cubic 1 -2 1 0")
+    print("Результат: 0 1 1")
+
 def main():
+    # Check number of arguments
+    if len(sys.argv) != 5 and len(sys.argv) != 2:
+        print("Ошибка: требуется 4 коэффициента или аргумент help.", file=sys.stderr)
+        sys.exit(1)
+        
+    # Handle help
+    if len(sys.argv) == 2 and sys.argv[1] == "help":
+        print_help()
+        sys.exit(0)
+    
     # Parse coefficients
     try:
         coeffs = [float(arg) for arg in sys.argv[1:]]
